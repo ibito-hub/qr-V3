@@ -21,7 +21,7 @@
 <p id="msg"></p>
 
 <script>
-const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbztOlkj442uKYK12HcSs4n7kSRqaZ6UC6PSHtLa7JRVGZqVISDKNXXR44oTpty6I5eq/exec";
+const URL_SCRIPT = "TON_URL_EXEC";
 
 document.getElementById("form").addEventListener("submit", async (e) => {
     e.preventDefault();

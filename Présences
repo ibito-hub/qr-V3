@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Présences</title>
+</head>
+<body>
+
+<h2>Entrer votre nom et prénom</h2>
+
+<form id="form">
+    <label>Nom :</label>
+    <input type="text" id="nom" required>
+
+    <label>Prénom :</label>
+    <input type="text" id="prenom" required>
+
+    <button type="submit">Envoyer</button>
+</form>
+
+<p id="msg"></p>
+
+<script>
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbztOlkj442uKYK12HcSs4n7kSRqaZ6UC6PSHtLa7JRVGZqVISDKNXXR44oTpty6I5eq/exec";
+
+document.getElementById("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+        nom: document.getElementById("nom").value,
+        prenom: document.getElementById("prenom").value
+    };
+
+    try {
+        const res = await fetch(URL_SCRIPT, {
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+            document.getElementById("msg").textContent = "Enregistré !";
+            document.getElementById("msg").style.color = "green";
+            document.getElementById("form").reset();
+        } else {
+            document.getElementById("msg").textContent = "Erreur lors de l’envoi.";
+            document.getElementById("msg").style.color = "red";
+        }
+    } catch (err) {
+        document.getElementById("msg").textContent = "Impossible de contacter le serveur.";
+        document.getElementById("msg").style.color = "red";
+    }
+});
+</script>
+
+</body>
+</html>
